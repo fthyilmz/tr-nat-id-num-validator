@@ -1,18 +1,27 @@
 {
-	"name": "epigra/tckimlik",
-	"description": "TC Kimlik Numarası Kontrolü ve Doğrulaması",
-	"keywords": ["tc kimlik","tckn","tc","kimlik", "doğrulama","laravel","form","validation"],
-	"homepage": "https://github.com/epigra/tckimlik",
+	"name": "erdemkeren/tr-nat-id-num-validator",
+	"description": "Validates Turkish National Identification Number",
+	"keywords": ["turkish", "national", "id", "number", "validator", "tc kimlik", "tckn", "tc", "kimlik", "doğrulama", "laravel", "form", "validation"],
+	"homepage": "https://github.com/erdemkeren/tr-nat-id-num-validator",
 	"license": "MIT",
 	"authors": [
+		{
+			"name": "Hilmi Erdem KEREN",
+			"email": "erdemkeren@gmail.com"
+		},
 		{
 			"name": "Uğur Aydoğdu",
 			"email": "ugur.aydogdu@epigra.com"
 		}
 	],
+	"require": {
+		"php": ">=7.1",
+		"illuminate/support": "^5.3",
+		"illuminate/validation": "^5.3"
+	},
 	"autoload": {
 		"psr-4": {
-			"Epigra\\": "src/"
+			"Erdemkeren\\Validators\\TrNatIdNumValidator\\": "src/"
 		}
 	}
 }
