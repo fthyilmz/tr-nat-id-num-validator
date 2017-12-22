@@ -9,7 +9,7 @@ final class TurkishNationalIdNumberValidator
 {
     /**
      * The "T.C. İçişleri Bakanlığı Nüfus ve Vatandaşlık İşleri Genel Müdürlüğü"
-     * national identification number validation service request.
+     * Turkish National Identification Number validation service request.
      *
      * @var NviTcKimlikWebServiceRequest
      */
@@ -41,11 +41,11 @@ final class TurkishNationalIdNumberValidator
             $response = $this->nviTcKimlikWebServiceRequest->send(
                 new NaturalizationRecord($natIdNum, $firstName, $lastName, $birthYear)
             );
+
         } catch (InvalidTurkishNationalIdentificationNumberException $e) {
             return false;
         }
 
-
-        return (strip_tags($response) === 'true') ? true : false;
+        return 'true' === $response;
     }
 }

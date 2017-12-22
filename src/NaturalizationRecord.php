@@ -12,14 +12,14 @@ final class NaturalizationRecord
      *
      * @var string
      */
-    private static $letterFilterPattern = '/[^a-zŞşİıĞğÜüÖöÇç]/';
+    private static $letterFilterPattern = '/[^a-zA-Z\sŞşİıĞğÜüÖöÇç]/';
 
     /**
      * The number filter pattern.
      *
      * @var string
      */
-    private static $numberFilterPattern = '/[0-9]/';
+    private static $numberFilterPattern = '/[^0-9]/';
 
     /**
      * The valid national identification number pattern.
@@ -66,15 +66,13 @@ final class NaturalizationRecord
      */
     public function __construct(string $natIdNum, string $firstName, string $lastName, int $birthYear)
     {
-        $this->lastName = preg_replace(self::$letterFilterPattern, '', $lastName);
-        $this->firstName = preg_replace(self::$letterFilterPattern, '', $firstName);
+        $this->lastName = self::tr_strtoupper(preg_replace(self::$letterFilterPattern, '', $lastName));
+        $this->firstName = self::tr_strtoupper(preg_replace(self::$letterFilterPattern, '', $firstName));
         $this->birthYear = preg_replace(self::$numberFilterPattern, '', $birthYear);
         $this->natIdNum = preg_replace(self::$numberFilterPattern, '', $natIdNum);
 
         if (! ($this->validatePattern($this->natIdNum()) || $this->validateAlgorithm($this->natIdNum()))) {
-            $this->throwValidationException(
-                "The given national identification number is invalid."
-            );
+            $this->throwValidationException("The given national identification number is invalid.");
         }
     }
 
@@ -164,5 +162,17 @@ final class NaturalizationRecord
     private function throwValidationException(string $message): void
     {
         throw new InvalidTurkishNationalIdentificationNumberException($message);
+    }
+
+    /**
+     * The turkish str to upper function which works right.
+     *
+     * @param  string $str
+     *
+     * @return string
+     */
+    private static function tr_strtoupper(string $str): string
+    {
+        return strtoupper(str_replace(["ç", "i", "ı", "ğ", "ö", "ş", "ü"], ["Ç", "İ", "I", "Ğ", "Ö", "Ş", "Ü"], $str));
     }
 }

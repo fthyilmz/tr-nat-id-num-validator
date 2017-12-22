@@ -1,91 +1,125 @@
-# TC Kimlik Numarası Kontrolü ve Doğrulaması (Validation of Turkish Identification Number) 
+# T.C. Kimlik Numarası Doğrulayıcı (Turkish National Identification Number Validator)
 
-## Yükleme
-composer üzerinden:
+Bu paket, Laravel 5.3+ uygulamalara TC Kimlik Numarası Doğrulaması özelliği ekler. 
+
+## İçerik
+
+- [Kurulum](#kurulum)
+- [Kullanım](#kullanım)
+    - [Validator Olarak Kullanımı](#validator-olarak-kullanımı)
+    - [Özel Olarak Kullanımı](#özel-olarak-kullanımı)
+    - [Hata Mesajını Özelleştirmek](#hata-mesajını-özelleştirmek)
+- [Değişiklik Listesi](#değişiklik-listesi)
+- [Test](#testing)
+- [Güvenlik](#security)
+- [Katkıda Bulunun](#katkıda-bulunun)
+- [Tanıtımlar](#tanıtımlar)
+- [Lisans](#lisans)
+
+## Kurulum
+
+Paketi composer üzerinden yükleyebilirsiniz:
+
 ```
-composer require epigra/tckimlik
+composer require erdemkeren/tr-nat-id-num-validator
 ````
-demeniz yeterli olacaktır.
+
+Eğer uygulamanızda otomatik keşif özelliği yoksa; 
+ardından `config/app.php` dosyanıza servis sağlayıcımızı eklemelisiniz.
+
+```php
+...
+'providers' => [
+    ...
+    Erdemkeren\Validators\TrNatIdNumValidator\TrNatIdNumValidationServiceProvider::class,
+],
+...
+```
 
 ## Kullanım
 
-#### Doğrulama (Verification)
+### Validator Olarak Kullanımı
+
+Paket kurulumunu tamamladıktan sonra; herhangi bir doğrulama kullanır gibi kullanabilirsiniz.
+
+NVI'nin soap isteğinin gerçekleştirilebilmesi için; TC Kimlik Numarası ile birlikte sırası ile
+kullanıcının adını, soyadını ve doğum yılını da vermeniz gerekmektedir.
 
 ```php
-use Epigra\TcKimlik;
-
-$check = TcKimlik::verify('tckimlikno'); //string
-var_dump($check);
-
-$data['tcno'] = 'tckimlikno'; 
-$check2 = TcKimlik::verify($data); //array
-var_dump($check2);
-```
-
-#### SOAP Onay (Validation)
-
-```php
-use Epigra\TcKimlik;
-
-$data = array(
-		'tcno'          => 'tckimlikno',
-		'isim'          => 'XXXXX XXX',
-		'soyisim'       => 'XXXXXX',
-		'dogumyili'     => 'XXXX',
-);
-
-$check = TcKimlik::validate($data); //auto uppercase
-var_dump($check);
-
-$check2 = TcKimlik::validate($data,false); // auto uppercase false
-var_dump($check2);
-```
-
-#### Laravel Service Provider
-
-`config/app.php` dosyası içerisindeki providers arrayi altına
-
-```
-Epigra\TCKimlikServiceProvider::class
-```
-
-satırını ekledikten sonra standart Validation kütüphanesi içerisinde
-
-```php
-$validator = Validator::make($data, [
-	'tcno' 	 => 'required|tckimlik|unique:tabloadi,sutunadi',
-	'isim' => 'required',
-	'soyisim' 	 => 'required',
-	'dogumyili' => 'required',
-]);
-```
-şeklinde kullanıldıktan sonra verify fonksiyonu otomatik olarak belirtilen alan için çalışarak algoritmik doğrulamayı gerçekleştirecektir.
-
-Verilen hata mesajını değiştirmek isterseniz `resources/lang/dil/validation.php`dosyası içerisine
-
-```php
-'tckimlik' => "Vermek istediğiniz hata mesajı"
-```
-
-şeklinde tanımlama yapabilirsiniz.
-
-
-#### Extending Laravel Validator
-
-Öncesinde `Validator::make` ile tanımlamış olduğunuz validator nesnesini `if ($validator->fails()) `şeklinde kontrol etmeden önce aşağıdaki şekilde tanımlama yapmanız yeterli olacaktır.
-
-```php
-$validator->after(function($validator) use ($request) {
-
-	$data = array(
-		'tcno'          => 'tckimlikno',
-		'isim'          => 'XXXXX XXX',
-		'soyisim'       => 'XXXXXX',
-		'dogumyili'     => 'XXXX',
-	);
-
-    if (!TcKimlik::validate($data)) {
-        $validator->errors()->add('formfieldname', 'TC Kimlik Numarası vermiş olduğunuz kimlik bilgilerinizle eşleşmiyor');
+<?php
+ 
+namespace App\Http\Controllers;
+ 
+use Illuminate\Http\Request;
+ 
+class ExampleController extends Controller
+{
+    public function index(Request $request)
+    {
+        $this->validate($request, [
+            'tr_nat_id_num' => 'required|tr_nat_id_num:Hilmi Erdem,Keren,1990'
+        ]);
+ 
+        return "Hello!";
     }
-});
+}
 ```
+
+### Özel Olarak Kullanımı
+
+Bu paket, sahnenin arkasında `TurkishNationalIdNumberValidator` sınıfını kullanır.
+Eğer validation rule değil, özel bir kullanım ihtiyacınız varsa; siz de aynı sınıfı kullanabilirsiniz. 
+
+```php
+$validator = new TurkishNationalIdNumberValidator(new NviTcKimlikWebServiceRequest());
+
+$result = $validator->validate($trNatIdNum, $name, $surname, $birthYear);
+```
+
+### Hata Mesajını Özelleştirmek
+
+Verilen hata mesajını değiştirmek isterseniz 
+`resources/lang/{dil}/validation.php`
+dosyalarına istediğiniz hata mesajını ekleyebilirsiniz:
+
+```php
+'tr_nat_id_num' => "Vermek istediğiniz hata mesajı"
+```
+
+## Değişiklik Listesi
+
+Lütfen son değişiklikleri görmek için [Değişiklik Listesi](CHANGELOG.md) dosyasını ziyaret ediniz.
+
+## Test
+
+Uygulama testleri henüz yazılmadı. phpunit kullanılarak yazılacak.
+
+Testler hazırlandığında aşağıdaki şekilde çalıştırılabilir olacaktır:
+
+``` bash
+$ composer test
+```
+
+## Güvenlik
+
+Uygulama, NVI tarafından sağlanan soap isteği şemasını kullanarak; 
+yine NVI tarafından sağlanan bağlantı üzerinden doğrulama isteğinde bulunmaktadır.
+
+Eğer yalnızca iç ağ üzerinde çalışan indoor bir uygulama geliştiriyorsanız; bu paket size uygun değildir.
+
+## Katkıda Bulunun
+
+Eğer katkıda bulunmak isterseniz lütfen [Katkıda Bulunun](CONTRIBUTING.md) dosyasını inceleyin.
+
+## Tanıtımlar
+
+- [Hilmi Erdem KEREN](https://github.com/erdemkeren)
+- [Uğur Aydogdu](https://github.com/jnbn)
+
+Bu paket
+
+[epigra/tckimlik]()https://github.com/epigra/tckimlik) paketinin üzerine geliştirilmiştir.
+
+## Lisans
+
+The MIT License (MIT). Detaylar için lütfen [Lisans Dosyasını](LICENSE.md) inceleyin.
