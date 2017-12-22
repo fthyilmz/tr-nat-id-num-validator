@@ -68,7 +68,7 @@ final class NaturalizationRecord
     {
         $this->lastName = self::tr_strtoupper(preg_replace(self::$letterFilterPattern, '', $lastName));
         $this->firstName = self::tr_strtoupper(preg_replace(self::$letterFilterPattern, '', $firstName));
-        $this->birthYear = preg_replace(self::$numberFilterPattern, '', $birthYear);
+        $this->birthYear = (int) preg_replace(self::$numberFilterPattern, '', (string) $birthYear);
         $this->natIdNum = preg_replace(self::$numberFilterPattern, '', $natIdNum);
 
         if (! ($this->validatePattern($this->natIdNum()) || $this->validateAlgorithm($this->natIdNum()))) {
@@ -140,10 +140,10 @@ final class NaturalizationRecord
         $sumOfOdds = $natIdNum[0] + $natIdNum[2] + $natIdNum[4] + $natIdNum[6] + $natIdNum[8];
         $sumOfEvens = $natIdNum[1] + $natIdNum[3] + $natIdNum[5] + $natIdNum[7];
 
-        $controlDigitOne = $natIdNum[9];
-        $controlDigitTwo = $natIdNum[10];
-        $testVariableOne = ($sumOfOdds * 7 - $sumOfEvens) % 10;
-        $testVariableTwo = ($sumOfOdds + $sumOfEvens + $controlDigitOne) % 10;
+        $controlDigitOne = (int) $natIdNum[9];
+        $controlDigitTwo = (int) $natIdNum[10];
+        $testVariableOne = (int) ($sumOfOdds * 7 - $sumOfEvens) % 10;
+        $testVariableTwo = (int) ($sumOfOdds + $sumOfEvens + $controlDigitOne) % 10;
 
         if (($testVariableOne !== $controlDigitOne) || ($testVariableTwo !== $controlDigitTwo)) {
             return false;

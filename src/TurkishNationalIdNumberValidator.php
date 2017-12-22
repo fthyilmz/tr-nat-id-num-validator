@@ -28,22 +28,13 @@ final class TurkishNationalIdNumberValidator
     /**
      * Validate the national identification number using NVI services.
      *
-     * @param string $natIdNum
-     * @param string $firstName
-     * @param string $lastName
-     * @param string $birthYear
+     * @param NaturalizationRecord $naturalizationRecord
      *
      * @return bool
      */
-    public function validate(string $natIdNum, string $firstName, string $lastName, string $birthYear): bool
+    public function validate(NaturalizationRecord $naturalizationRecord): bool
     {
-        try {
-            $response = $this->nviTcKimlikWebServiceRequest->send(
-                new NaturalizationRecord($natIdNum, $firstName, $lastName, $birthYear)
-            );
-        } catch (InvalidTurkishNationalIdentificationNumberException $e) {
-            return false;
-        }
+        $response = $this->nviTcKimlikWebServiceRequest->send($naturalizationRecord);
 
         return 'true' === $response;
     }

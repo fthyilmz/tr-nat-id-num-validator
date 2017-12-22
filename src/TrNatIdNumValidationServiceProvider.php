@@ -20,7 +20,13 @@ final class TrNatIdNumValidationServiceProvider extends ServiceProvider
         Validator::extend('tr_nat_id_num', function (string $attribute, string $value, array $parameters) {
             $validator = new TurkishNationalIdNumberValidator(new NviTcKimlikWebServiceRequest());
 
-            return $validator->validate($value, ...$parameters);
+            try {
+                $naturalizationRecord = new NaturalizationRecord($value, ...$parameters);
+            } catch (InvalidTurkishNationalIdentificationNumberException $e) {
+                return false;
+            }
+
+            return $validator->validate($naturalizationRecord);
         });
 
         Validator::replacer('tr_nat_id_num', function ($message, $attribute, $rule, $parameters) {
