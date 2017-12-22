@@ -29,7 +29,7 @@ final class TrNatIdNumValidationServiceProvider extends ServiceProvider
             return $validator->validate($naturalizationRecord);
         });
 
-        Validator::replacer('tr_nat_id_num', function ($message, $attribute, $rule, $parameters) {
+        Validator::replacer('tr_nat_id_num', function ($message) {
             if ($message === 'validation.tr_nat_id_num') {
                 return 'Belirtilen T.C. Kimlik Numarası doğrulanamadı.';
             }
