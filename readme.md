@@ -1,5 +1,7 @@
 # T.C. Kimlik Numarası Doğrulayıcı (Turkish National Identification Number Validator)
 
+[![StyleCI](https://styleci.io/repos/114738239/shield?branch=master)](https://styleci.io/repos/114738239)
+
 Bu paket, Laravel 5.3+ uygulamalara TC Kimlik Numarası Doğrulaması özelliği ekler. 
 
 ## İçerik
