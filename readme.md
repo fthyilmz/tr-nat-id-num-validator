@@ -8,7 +8,7 @@ Bu paket, Laravel 5.3+ uygulamalara TC Kimlik Numarası Doğrulaması özelliği
 - [Kullanım](#kullanım)
     - [Validator Olarak Kullanımı](#validator-olarak-kullanımı)
     - [Özel Olarak Kullanımı](#ozel-olarak-kullanımı)
-    - [Hata Mesajını Özelleştirmek](#hata-mesajını-özellestirmek)
+    - [Hata Mesajını Özelleştirmek](#hata-mesajını-ozellestirmek)
 - [Değişiklik Listesi](#degisiklik-listesi)
 - [Test](#test)
 - [Güvenlik](#guvenlik)
@@ -65,7 +65,7 @@ class ExampleController extends Controller
 }
 ```
 
-### Özel Olarak Kullanımı
+### Ozel Olarak Kullanımı
 
 Bu paket, sahnenin arkasında `TurkishNationalIdNumberValidator` sınıfını kullanır.
 Eğer validation rule değil, özel bir kullanım ihtiyacınız varsa; siz de aynı sınıfı kullanabilirsiniz. 
@@ -76,7 +76,7 @@ $validator = new TurkishNationalIdNumberValidator(new NviTcKimlikWebServiceReque
 $result = $validator->validate($trNatIdNum, $name, $surname, $birthYear);
 ```
 
-### Hata Mesajını Özelleştirmek
+### Hata Mesajını Ozellestirmek
 
 Verilen hata mesajını değiştirmek isterseniz 
 `resources/lang/{dil}/validation.php`
@@ -86,7 +86,7 @@ dosyalarına istediğiniz hata mesajını ekleyebilirsiniz:
 'tr_nat_id_num' => "Vermek istediğiniz hata mesajı"
 ```
 
-## Değişiklik Listesi
+## Degisiklik Listesi
 
 Lütfen son değişiklikleri görmek için [Değişiklik Listesi](CHANGELOG.md) dosyasını ziyaret ediniz.
 
@@ -118,7 +118,7 @@ Eğer katkıda bulunmak isterseniz lütfen [Katkıda Bulunun](CONTRIBUTING.md) d
 
 Bu paket
 
-[epigra/tckimlik]()https://github.com/epigra/tckimlik) paketinin üzerine geliştirilmiştir.
+[epigra/tckimlik](https://github.com/epigra/tckimlik) paketinin üzerine geliştirilmiştir.
 
 ## Lisans
 
