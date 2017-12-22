@@ -27,7 +27,7 @@ final class NviTcKimlikWebServiceRequest
     /**
      * Send the request with the given parameters.
      *
-     * @param  NaturalizationRecord $naturalizationRecord
+     * @param NaturalizationRecord $naturalizationRecord
      *
      * @return string
      */
@@ -42,13 +42,13 @@ final class NviTcKimlikWebServiceRequest
         );
 
         curl_setopt_array($ch, [
-            CURLOPT_URL => 'https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx',
-            CURLOPT_POST => true,
-            CURLOPT_POSTFIELDS => $body,
+            CURLOPT_URL            => 'https://tckimlik.nvi.gov.tr/Service/KPSPublic.asmx',
+            CURLOPT_POST           => true,
+            CURLOPT_POSTFIELDS     => $body,
             CURLOPT_RETURNTRANSFER => true,
             CURLOPT_SSL_VERIFYPEER => false,
-            CURLOPT_HEADER => false,
-            CURLOPT_HTTPHEADER => [
+            CURLOPT_HEADER         => false,
+            CURLOPT_HTTPHEADER     => [
                 'POST /Service/KPSPublic.asmx HTTP/1.1',
                 'Host: tckimlik.nvi.gov.tr',
                 'Content-Type: text/xml; charset=utf-8',
@@ -66,10 +66,10 @@ final class NviTcKimlikWebServiceRequest
     /**
      * Make the request body with the constructor parameters.
      *
-     * @param  string $natIdNum
-     * @param  string $firstName
-     * @param  string $lastName
-     * @param  int    $birthYear
+     * @param string $natIdNum
+     * @param string $firstName
+     * @param string $lastName
+     * @param int    $birthYear
      *
      * @return string
      */

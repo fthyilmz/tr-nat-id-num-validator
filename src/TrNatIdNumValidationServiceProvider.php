@@ -2,8 +2,8 @@
 
 namespace Erdemkeren\Validators\TrNatIdNumValidator;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\ServiceProvider;
 
 /**
  * Class TurkishNationalIdNumberValidationServiceProvider.
@@ -24,8 +24,8 @@ final class TrNatIdNumValidationServiceProvider extends ServiceProvider
         });
 
         Validator::replacer('tr_nat_id_num', function ($message, $attribute, $rule, $parameters) {
-            if ($message === "validation.tr_nat_id_num") {
-                return "Belirtilen T.C. Kimlik Numarası doğrulanamadı.";
+            if ($message === 'validation.tr_nat_id_num') {
+                return 'Belirtilen T.C. Kimlik Numarası doğrulanamadı.';
             }
 
             return $message;
