@@ -59,10 +59,10 @@ final class NaturalizationRecord
     /**
      * NaturalizationRecord constructor.
      *
-     * @param  string $natIdNum
-     * @param  string $firstName
-     * @param  string $lastName
-     * @param  int $birthYear
+     * @param string $natIdNum
+     * @param string $firstName
+     * @param string $lastName
+     * @param int    $birthYear
      */
     public function __construct(string $natIdNum, string $firstName, string $lastName, int $birthYear)
     {
@@ -71,8 +71,8 @@ final class NaturalizationRecord
         $this->birthYear = preg_replace(self::$numberFilterPattern, '', $birthYear);
         $this->natIdNum = preg_replace(self::$numberFilterPattern, '', $natIdNum);
 
-        if (! ($this->validatePattern($this->natIdNum()) || $this->validateAlgorithm($this->natIdNum()))) {
-            $this->throwValidationException("The given national identification number is invalid.");
+        if (!($this->validatePattern($this->natIdNum()) || $this->validateAlgorithm($this->natIdNum()))) {
+            $this->throwValidationException('The given national identification number is invalid.');
         }
     }
 
@@ -119,7 +119,7 @@ final class NaturalizationRecord
     /**
      * Validate the pattern of the given national identification number.
      *
-     * @param  string $natIdNum
+     * @param string $natIdNum
      *
      * @return bool
      */
@@ -131,7 +131,7 @@ final class NaturalizationRecord
     /**
      * Validate the given national identification number algorithmically.
      *
-     * @param  string $natIdNum
+     * @param string $natIdNum
      *
      * @return bool
      */
@@ -155,7 +155,7 @@ final class NaturalizationRecord
     /**
      * Throws an invalid Turkish National Identification Number exception with the given message.
      *
-     * @param  string $message
+     * @param string $message
      *
      * @return void
      */
@@ -167,12 +167,12 @@ final class NaturalizationRecord
     /**
      * The turkish str to upper function which works right.
      *
-     * @param  string $str
+     * @param string $str
      *
      * @return string
      */
     private static function tr_strtoupper(string $str): string
     {
-        return strtoupper(str_replace(["ç", "i", "ı", "ğ", "ö", "ş", "ü"], ["Ç", "İ", "I", "Ğ", "Ö", "Ş", "Ü"], $str));
+        return strtoupper(str_replace(['ç', 'i', 'ı', 'ğ', 'ö', 'ş', 'ü'], ['Ç', 'İ', 'I', 'Ğ', 'Ö', 'Ş', 'Ü'], $str));
     }
 }
