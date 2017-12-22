@@ -2,6 +2,7 @@
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![StyleCI](https://styleci.io/repos/114738239/shield?branch=master)](https://styleci.io/repos/114738239)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/erdemkeren/tr-nat-id-num-validator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/erdemkeren/tr-nat-id-num-validator/?branch=master)
 
 Bu paket, Laravel 5.3+ uygulamalara TC Kimlik Numarası Doğrulaması özelliği ekler. 
 
