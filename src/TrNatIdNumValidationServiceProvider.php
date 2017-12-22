@@ -16,7 +16,7 @@ final class TrNatIdNumValidationServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        Validator::extend('tr_national_id_number', function (string $attribute, string $value, array $parameters) {
+        Validator::extend('tr_nat_id_number', function (string $attribute, string $value, array $parameters) {
             $validator = new TurkishNationalIdNumberValidator(new NviTcKimlikWebServiceRequest());
 
             return $validator->validate($value, ...$parameters);

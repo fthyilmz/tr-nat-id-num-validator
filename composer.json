@@ -23,5 +23,12 @@
 		"psr-4": {
 			"Erdemkeren\\Validators\\TrNatIdNumValidator\\": "src/"
 		}
+	},
+	"extra": {
+		"laravel": {
+			"providers": [
+				"Erdemkeren\\Validators\\TrNatIdNumValidator\\TrNatIdNumValidationServiceProvider"
+			]
+		}
 	}
 }
