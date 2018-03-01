@@ -12,7 +12,7 @@ final class NaturalizationRecord
      *
      * @var string
      */
-    private static $letterFilterPattern = '/[^a-zA-Z\sŞşİıĞğÜüÖöÇç]/';
+    private static $letterFilterPattern = '/[^a-zA-Z\sŞşİıĞğÜüÖöÇç.]/';
 
     /**
      * The number filter pattern.
