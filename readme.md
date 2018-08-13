@@ -79,7 +79,7 @@ Eğer validation rule değil, özel bir kullanım ihtiyacınız varsa; siz de ay
 ```php
 $validator = new TurkishNationalIdNumberValidator(new NviTcKimlikWebServiceRequest());
 
-$result = $validator->validate($trNatIdNum, $name, $surname, $birthYear);
+$result = $validator->validate(new NaturalizationRecord($trNatIdNum, $name, $surname, $birthYear));
 ```
 
 ### Hata Mesajını Ozellestirmek
