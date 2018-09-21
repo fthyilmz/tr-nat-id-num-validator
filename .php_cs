@@ -129,7 +129,7 @@ $config = PhpCsFixer\Config::create()
         'trailing_comma_in_multiline_array' => true,
         'no_trailing_comma_in_singleline_array' => true,
         'trim_array_spaces' => true,
-        'unary_operator_spaces' => true,
+        'unary_operator_spaces' => false,
         'line_ending' => true,
         'whitespace_after_comma_in_array' => true,
 
