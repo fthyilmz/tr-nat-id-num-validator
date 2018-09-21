@@ -1,2 +1,6 @@
 .DS_Store
 Thumbs.db
+build
+vendor
+scripts/php-cs-fixer
+.php_cs.cache

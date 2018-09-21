@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * @copyright 2018 Hilmi Erdem KEREN
+ * @license MIT
+ */
+
 namespace Erdemkeren\Validators\TrNatIdNumValidator;
 
 /**
@@ -53,7 +58,7 @@ final class NviTcKimlikWebServiceRequest
                 'Host: tckimlik.nvi.gov.tr',
                 'Content-Type: text/xml; charset=utf-8',
                 'SOAPAction: "http://tckimlik.nvi.gov.tr/WS/TCKimlikNoDogrula"',
-                'Content-Length: '.strlen($body),
+                'Content-Length: '.\strlen($body),
             ],
         ]);
 

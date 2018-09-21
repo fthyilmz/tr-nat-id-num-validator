@@ -4,6 +4,8 @@
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
 [![StyleCI](https://styleci.io/repos/114738239/shield?branch=master)](https://styleci.io/repos/114738239)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/erdemkeren/tr-nat-id-num-validator/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/erdemkeren/tr-nat-id-num-validator/?branch=master)
+[![Build Status](https://img.shields.io/travis/erdemkeren/tr-nat-id-num-validator/master.svg?style=flat-square)](https://travis-ci.org/erdemkeren/tr-nat-id-num-validator)
+[![Code Coverage](https://img.shields.io/scrutinizer/coverage/g/erdemkeren/tr-nat-id-num-validator/master.svg?style=flat-square)](https://scrutinizer-ci.com/g/erdemkeren/tr-nat-id-num-validator/?branch=master)
 [![Total Downloads](https://img.shields.io/packagist/dt/erdemkeren/tr-nat-id-num-validator.svg?style=flat-square)](https://packagist.org/packages/erdemkeren/tr-nat-id-num-validator)
 
 Bu paket, Laravel 5.3+ uygulamalara TC Kimlik Numarası Doğrulaması özelliği ekler. 
@@ -98,9 +100,7 @@ Lütfen son değişiklikleri görmek için [Değişiklik Listesi](CHANGELOG.md) 
 
 ## Test
 
-Uygulama testleri henüz yazılmadı. phpunit kullanılarak yazılacak.
-
-Testler hazırlandığında aşağıdaki şekilde çalıştırılabilir olacaktır:
+Testleri koşmak için composer.json seviyesinde aşağıdaki komut çalıştırılabilir:
 
 ``` bash
 $ composer test

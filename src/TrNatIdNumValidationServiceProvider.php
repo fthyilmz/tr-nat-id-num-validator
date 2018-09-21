@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * @copyright 2018 Hilmi Erdem KEREN
+ * @license MIT
+ */
+
 namespace Erdemkeren\Validators\TrNatIdNumValidator;
 
 use Illuminate\Support\ServiceProvider;
@@ -12,8 +17,6 @@ final class TrNatIdNumValidationServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -30,7 +33,7 @@ final class TrNatIdNumValidationServiceProvider extends ServiceProvider
         });
 
         Validator::replacer('tr_nat_id_num', function ($message) {
-            if ($message === 'validation.tr_nat_id_num') {
+            if ('validation.tr_nat_id_num' === $message) {
                 return 'Belirtilen T.C. Kimlik Numarası doğrulanamadı.';
             }
 

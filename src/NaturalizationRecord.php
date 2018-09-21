@@ -1,5 +1,10 @@
 <?php
 
+/*
+ * @copyright 2018 Hilmi Erdem KEREN
+ * @license MIT
+ */
+
 namespace Erdemkeren\Validators\TrNatIdNumValidator;
 
 /**
@@ -71,7 +76,7 @@ final class NaturalizationRecord
         $this->birthYear = (int) preg_replace(self::$numberFilterPattern, '', (string) $birthYear);
         $this->natIdNum = preg_replace(self::$numberFilterPattern, '', $natIdNum);
 
-        if (! ($this->validatePattern($this->natIdNum()) || $this->validateAlgorithm($this->natIdNum()))) {
+        if (!($this->validatePattern($this->natIdNum()) && $this->validateAlgorithm($this->natIdNum()))) {
             $this->throwValidationException('The given national identification number is invalid.');
         }
     }
@@ -156,8 +161,6 @@ final class NaturalizationRecord
      * Throws an invalid Turkish National Identification Number exception with the given message.
      *
      * @param string $message
-     *
-     * @return void
      */
     private function throwValidationException(string $message): void
     {

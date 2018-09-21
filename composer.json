@@ -19,10 +19,24 @@
 		"illuminate/support": "^5.3",
 		"illuminate/validation": "^5.3"
 	},
+	"require-dev": {
+		"phpunit/phpunit": ">=6.5"
+	},
 	"autoload": {
 		"psr-4": {
 			"Erdemkeren\\Validators\\TrNatIdNumValidator\\": "src/"
 		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"Erdemkeren\\Validators\\TrNatIdNumValidator\\Test\\": "tests"
+		}
+	},
+	"scripts": {
+		"post-root-package-install": [
+			"bash scripts/post-install.sh"
+		],
+		"test": "vendor/bin/phpunit"
 	},
 	"extra": {
 		"laravel": {
