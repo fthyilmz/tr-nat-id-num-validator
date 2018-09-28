@@ -190,12 +190,10 @@ try {
         ->registerCustomFixers($config->getCustomFixers())
         ->useRuleSet(new PhpCsFixer\RuleSet($config->getRules()));
 } catch (PhpCsFixer\ConfigurationException\InvalidConfigurationException $e) {
-die($e);
     $config->setRules([]);
 } catch (UnexpectedValueException $e) {
     $config->setRules([]);
 } catch (InvalidArgumentException $e) {
-die($e);
     $config->setRules([]);
 }
 
