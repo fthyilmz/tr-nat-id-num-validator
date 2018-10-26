@@ -33,7 +33,7 @@
 		}
 	},
 	"scripts": {
-		"post-root-package-install": [
+		"post-install-cmd": [
 			"bash scripts/post-install.sh"
 		],
 		"test": "vendor/bin/phpunit"
