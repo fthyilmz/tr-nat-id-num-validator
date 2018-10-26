@@ -8,18 +8,6 @@
 # This file is automatically enabled by post-install-cmd composer
 # scripts. If you disabled executing scripts when installing
 # simply move this file under .git/hooks/pre-commit
-
-if ! [ -x ./scripts/php-cs-fixer/php-cs-fixer ]
-then
-    echo ""
-    echo "One shall remove the php-cs-fixer file from scripts folder not."
-    echo ""
-    echo "wget http://cs.sensiolabs.org/download/php-cs-fixer-v2.phar -O ./scripts/php-cs-fixer/php-cs-fixer"
-    echo "chmod +x ./scripts/php-cs-fixer/php-cs-fixer"
-
-    exit 1
-fi
-
 echo "Checking PHP Lint..."
 git status --porcelain | grep -e '^[AM]\(.*\).php$' | cut -c 3- | while read line; do
     echo "$line"
