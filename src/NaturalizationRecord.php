@@ -176,11 +176,11 @@ final class NaturalizationRecord
             $id[5] + $id[6] + $id[7] + $id[8] + $id[9]
         );
 
-        if ($sumOfFirstTenDigits % 10 !== $id[10]) {
+        if ($sumOfFirstTenDigits % 10 !== (int) $id[10]) {
             return false;
         }
 
-        if (($sumOfOdds * 8) % 10 !== $id[10]) {
+        if (($sumOfOdds * 8) % 10 !== (int) $id[10]) {
             return false;
         }
 
