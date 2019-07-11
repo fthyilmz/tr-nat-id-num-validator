@@ -76,7 +76,7 @@ final class NaturalizationRecord
         $this->birthYear = (int) preg_replace(self::$numberFilterPattern, '', (string) $birthYear);
         $this->natIdNum = preg_replace(self::$numberFilterPattern, '', $natIdNum);
 
-        if (! ($this->validatePattern($this->natIdNum()) && $this->validateAlgorithm($this->natIdNum()))) {
+        if (!($this->validatePattern($this->natIdNum()) && ($this->validateAlgorithm($this->natIdNum()) || $this->validateAlternativeAlgorithm($this->natIdNum())))) {
             $this->throwValidationException('The given national identification number is invalid.');
         }
     }
@@ -151,6 +151,32 @@ final class NaturalizationRecord
         $testVariableTwo = (int) ($sumOfOdds + $sumOfEvens + $controlDigitOne) % 10;
 
         if (($testVariableOne !== $controlDigitOne) || ($testVariableTwo !== $controlDigitTwo)) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * Validate the given national identification number another algorithm.
+     *
+     * @param string $natIdNum
+     *
+     * @return bool
+     */
+    private function validateAlternativeAlgorithm(string $natIdNum): bool
+    {
+        if (strlen($natIdNum) != 11) {
+            return false;
+        }
+
+        $c = str_split($natIdNum);
+
+        if (($c[0] + $c[1] + $c[2] + $c[3] + $c[4] + $c[5] + $c[6] + $c[7] + $c[8] + $c[9]) % 10 != $c[10]) {
+            return false;
+        }
+
+        if ((($c[0] + $c[2] + $c[4] + $c[6] + $c[8]) * 8) % 10 != $c[10]) {
             return false;
         }
 
