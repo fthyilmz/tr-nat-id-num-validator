@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1562835533">
+  <project timestamp="1562835533">
+    <package name="Erdemkeren\Validators\TrNatIdNumValidator">
+      <file name="/Users/hilmierdemkeren/dev/code/opencode/tr-nat-id-num-validator/src/InvalidTurkishNationalIdentificationNumberException.php">
+        <class name="Erdemkeren\Validators\TrNatIdNumValidator\InvalidTurkishNationalIdentificationNumberException" namespace="Erdemkeren\Validators\TrNatIdNumValidator">
+          <metrics complexity="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+        </class>
+        <metrics loc="17" ncloc="10" classes="0" methods="0" coveredmethods="0" conditionals="0" coveredconditionals="0" statements="0" coveredstatements="0" elements="0" coveredelements="0"/>
+      </file>
+      <file name="/Users/hilmierdemkeren/dev/code/opencode/tr-nat-id-num-validator/src/NaturalizationRecord.php">
+        <class name="Erdemkeren\Validators\TrNatIdNumValidator\NaturalizationRecord" namespace="Erdemkeren\Validators\TrNatIdNumValidator">
+          <metrics complexity="18" methods="10" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="31" elements="44" coveredelements="40"/>
+        </class>
+        <line num="72" type="method" name="__construct" visibility="public" complexity="4" crap="4" count="3"/>
+        <line num="74" type="stmt" count="3"/>
+        <line num="75" type="stmt" count="3"/>
+        <line num="76" type="stmt" count="3"/>
+        <line num="77" type="stmt" count="3"/>
+        <line num="79" type="stmt" count="3"/>
+        <line num="80" type="stmt" count="3"/>
+        <line num="81" type="stmt" count="3"/>
+        <line num="83" type="stmt" count="3"/>
+        <line num="84" type="stmt" count="1"/>
+        <line num="86" type="stmt" count="2"/>
+        <line num="93" type="method" name="natIdNum" visibility="public" complexity="1" crap="1" count="3"/>
+        <line num="95" type="stmt" count="3"/>
+        <line num="103" type="method" name="firstName" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="105" type="stmt" count="1"/>
+        <line num="113" type="method" name="lastName" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="115" type="stmt" count="1"/>
+        <line num="123" type="method" name="birthYear" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="125" type="stmt" count="1"/>
+        <line num="135" type="method" name="validatePattern" visibility="private" complexity="2" crap="2" count="3"/>
+        <line num="137" type="stmt" count="3"/>
+        <line num="147" type="method" name="validateAlgorithm" visibility="private" complexity="3" crap="3" count="3"/>
+        <line num="149" type="stmt" count="3"/>
+        <line num="150" type="stmt" count="3"/>
+        <line num="152" type="stmt" count="3"/>
+        <line num="153" type="stmt" count="3"/>
+        <line num="154" type="stmt" count="3"/>
+        <line num="155" type="stmt" count="3"/>
+        <line num="157" type="stmt" count="3"/>
+        <line num="158" type="stmt" count="1"/>
+        <line num="161" type="stmt" count="2"/>
+        <line num="171" type="method" name="validateUsingAlternativeAlgorithm" visibility="private" complexity="3" crap="3.47" count="1"/>
+        <line num="173" type="stmt" count="1"/>
+        <line num="175" type="stmt" count="1"/>
+        <line num="176" type="stmt" count="1"/>
+        <line num="179" type="stmt" count="1"/>
+        <line num="180" type="stmt" count="1"/>
+        <line num="183" type="stmt" count="0"/>
+        <line num="184" type="stmt" count="0"/>
+        <line num="187" type="stmt" count="0"/>
+        <line num="195" type="method" name="throwValidationException" visibility="private" complexity="1" crap="1" count="1"/>
+        <line num="197" type="stmt" count="1"/>
+        <line num="207" type="method" name="tr_strtoupper" visibility="private" complexity="1" crap="1" count="3"/>
+        <line num="209" type="stmt" count="3"/>
+        <metrics loc="211" ncloc="108" classes="1" methods="10" coveredmethods="9" conditionals="0" coveredconditionals="0" statements="34" coveredstatements="31" elements="44" coveredelements="40"/>
+      </file>
+      <file name="/Users/hilmierdemkeren/dev/code/opencode/tr-nat-id-num-validator/src/NviTcKimlikWebServiceRequest.php">
+        <class name="Erdemkeren\Validators\TrNatIdNumValidator\NviTcKimlikWebServiceRequest" namespace="Erdemkeren\Validators\TrNatIdNumValidator">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="23" elements="25" coveredelements="25"/>
+        </class>
+        <line num="39" type="method" name="send" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="41" type="stmt" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="43" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <line num="45" type="stmt" count="1"/>
+        <line num="46" type="stmt" count="1"/>
+        <line num="49" type="stmt" count="1"/>
+        <line num="50" type="stmt" count="1"/>
+        <line num="51" type="stmt" count="1"/>
+        <line num="52" type="stmt" count="1"/>
+        <line num="53" type="stmt" count="1"/>
+        <line num="54" type="stmt" count="1"/>
+        <line num="55" type="stmt" count="1"/>
+        <line num="56" type="stmt" count="1"/>
+        <line num="57" type="stmt" count="1"/>
+        <line num="58" type="stmt" count="1"/>
+        <line num="59" type="stmt" count="1"/>
+        <line num="60" type="stmt" count="1"/>
+        <line num="61" type="stmt" count="1"/>
+        <line num="65" type="stmt" count="1"/>
+        <line num="66" type="stmt" count="1"/>
+        <line num="68" type="stmt" count="1"/>
+        <line num="81" type="method" name="makeBody" visibility="private" complexity="1" crap="1" count="1"/>
+        <line num="83" type="stmt" count="1"/>
+        <metrics loc="85" ncloc="56" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="23" coveredstatements="23" elements="25" coveredelements="25"/>
+      </file>
+      <file name="/Users/hilmierdemkeren/dev/code/opencode/tr-nat-id-num-validator/src/TurkishNationalIdNumberValidator.php">
+        <class name="Erdemkeren\Validators\TrNatIdNumValidator\TurkishNationalIdNumberValidator" namespace="Erdemkeren\Validators\TrNatIdNumValidator">
+          <metrics complexity="2" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+        </class>
+        <line num="28" type="method" name="__construct" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="30" type="stmt" count="1"/>
+        <line num="31" type="stmt" count="1"/>
+        <line num="40" type="method" name="validate" visibility="public" complexity="1" crap="1" count="1"/>
+        <line num="42" type="stmt" count="1"/>
+        <line num="44" type="stmt" count="1"/>
+        <metrics loc="46" ncloc="21" classes="1" methods="2" coveredmethods="2" conditionals="0" coveredconditionals="0" statements="4" coveredstatements="4" elements="6" coveredelements="6"/>
+      </file>
+    </package>
+    <metrics files="4" loc="359" ncloc="195" classes="3" methods="14" coveredmethods="13" conditionals="0" coveredconditionals="0" statements="61" coveredstatements="58" elements="75" coveredelements="71"/>
+  </project>
+</coverage>
