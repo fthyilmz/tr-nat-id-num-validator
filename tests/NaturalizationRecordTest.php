@@ -30,7 +30,7 @@ class NaturalizationRecordTest extends TestCase
         $this->assertInstanceOf(NaturalizationRecord::class, $naturalizationRecord);
     }
 
-    public function test_it_can_enforces_valid_turkish_national_identification_number_pattern(): void
+    public function test_it_enforces_valid_turkish_national_identification_number_pattern(): void
     {
         $this->expectException(InvalidTurkishNationalIdentificationNumberException::class);
 

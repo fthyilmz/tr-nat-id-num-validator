@@ -76,7 +76,11 @@ final class NaturalizationRecord
         $this->birthYear = (int) preg_replace(self::$numberFilterPattern, '', (string) $birthYear);
         $this->natIdNum = preg_replace(self::$numberFilterPattern, '', $natIdNum);
 
-        if (!($this->validatePattern($this->natIdNum()) && ($this->validateAlgorithm($this->natIdNum()) || $this->validateAlternativeAlgorithm($this->natIdNum())))) {
+        $natIdNum = $this->natIdNum();
+        $isPatternValid = $this->validatePattern($natIdNum);
+        $isAlgorithmValid = $this->validateAlgorithm($natIdNum) || $this->validateUsingAlternativeAlgorithm($natIdNum);
+
+        if (! ($isPatternValid && $isAlgorithmValid)) {
             $this->throwValidationException('The given national identification number is invalid.');
         }
     }
@@ -136,17 +140,17 @@ final class NaturalizationRecord
     /**
      * Validate the given national identification number algorithmically.
      *
-     * @param string $natIdNum
+     * @param string $id
      *
      * @return bool
      */
-    private function validateAlgorithm(string $natIdNum): bool
+    private function validateAlgorithm(string $id): bool
     {
-        $sumOfOdds = $natIdNum[0] + $natIdNum[2] + $natIdNum[4] + $natIdNum[6] + $natIdNum[8];
-        $sumOfEvens = $natIdNum[1] + $natIdNum[3] + $natIdNum[5] + $natIdNum[7];
+        $sumOfOdds = $id[0] + $id[2] + $id[4] + $id[6] + $id[8];
+        $sumOfEvens = $id[1] + $id[3] + $id[5] + $id[7];
 
-        $controlDigitOne = (int) $natIdNum[9];
-        $controlDigitTwo = (int) $natIdNum[10];
+        $controlDigitOne = (int) $id[9];
+        $controlDigitTwo = (int) $id[10];
         $testVariableOne = (int) ($sumOfOdds * 7 - $sumOfEvens) % 10;
         $testVariableTwo = (int) ($sumOfOdds + $sumOfEvens + $controlDigitOne) % 10;
 
@@ -158,25 +162,25 @@ final class NaturalizationRecord
     }
 
     /**
-     * Validate the given national identification number another algorithm.
+     * Validate the given national identification using the alternative algorithm.
      *
-     * @param string $natIdNum
+     * @param string $id
      *
      * @return bool
      */
-    private function validateAlternativeAlgorithm(string $natIdNum): bool
+    private function validateUsingAlternativeAlgorithm(string $id): bool
     {
-        if (strlen($natIdNum) != 11) {
+        $sumOfOdds = $id[0] + $id[2] + $id[4] + $id[6] + $id[8];
+        $sumOfFirstTenDigits = (
+            $id[0] + $id[1] + $id[2] + $id[3] + $id[4] +
+            $id[5] + $id[6] + $id[7] + $id[8] + $id[9]
+        );
+
+        if ($sumOfFirstTenDigits % 10 !== $id[10]) {
             return false;
         }
 
-        $c = str_split($natIdNum);
-
-        if (($c[0] + $c[1] + $c[2] + $c[3] + $c[4] + $c[5] + $c[6] + $c[7] + $c[8] + $c[9]) % 10 != $c[10]) {
-            return false;
-        }
-
-        if ((($c[0] + $c[2] + $c[4] + $c[6] + $c[8]) * 8) % 10 != $c[10]) {
+        if (($sumOfOdds * 8) % 10 !== $id[10]) {
             return false;
         }
 
