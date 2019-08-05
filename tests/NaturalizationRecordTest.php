@@ -56,4 +56,16 @@ class NaturalizationRecordTest extends TestCase
         $this->assertSame('ATATÜRK', $naturalizationRecord->lastName());
         $this->assertSame($birthYear, $naturalizationRecord->birthYear());
     }
+
+    public function test_it_must_be_11_characters(): void
+    {
+        $this->expectException(InvalidTurkishNationalIdentificationNumberException::class);
+
+        new NaturalizationRecord(
+            '',
+            'Gazi Mustafa Kemal',
+            'Atatürk',
+            '1881'
+        );
+    }
 }

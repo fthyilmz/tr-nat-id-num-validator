@@ -78,7 +78,10 @@ final class NaturalizationRecord
 
         $natIdNum = $this->natIdNum();
         $isPatternValid = $this->validatePattern($natIdNum);
-        $isAlgorithmValid = $this->validateAlgorithm($natIdNum) || $this->validateUsingAlternativeAlgorithm($natIdNum);
+
+        if ($isPatternValid) {
+            $isAlgorithmValid = $this->validateAlgorithm($natIdNum) || $this->validateUsingAlternativeAlgorithm($natIdNum);
+        }
 
         if (! ($isPatternValid && $isAlgorithmValid)) {
             $this->throwValidationException('The given national identification number is invalid.');
