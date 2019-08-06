@@ -77,6 +77,7 @@ final class NaturalizationRecord
         $this->natIdNum = preg_replace(self::$numberFilterPattern, '', $natIdNum);
 
         $natIdNum = $this->natIdNum();
+        $isAlgorithmValid = false;
         $isPatternValid = $this->validatePattern($natIdNum);
 
         if ($isPatternValid) {
