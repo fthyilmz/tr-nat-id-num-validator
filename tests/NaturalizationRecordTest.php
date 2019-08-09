@@ -57,6 +57,21 @@ class NaturalizationRecordTest extends TestCase
         $this->assertSame($birthYear, $naturalizationRecord->birthYear());
     }
 
+    public function test_it_accepts_nouns_with_carets(): void
+    {
+        $this->expectException(InvalidTurkishNationalIdentificationNumberException::class);
+
+        $nr = new NaturalizationRecord(
+            '10000000148',
+            'Hilâl',
+            'Hilâl',
+            '1990'
+        );
+
+        $this->assertSame('HİLÂL', $nr->firstName());
+        $this->assertSame('HİLÂL', $nr->lastName());
+    }
+
     public function test_it_must_be_11_characters(): void
     {
         $this->expectException(InvalidTurkishNationalIdentificationNumberException::class);

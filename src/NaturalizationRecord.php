@@ -17,7 +17,7 @@ final class NaturalizationRecord
      *
      * @var string
      */
-    private static $letterFilterPattern = '/[^a-zA-Z\sŞşİıĞğÜüÖöÇç.]/';
+    private static $letterFilterPattern = '/[^a-zA-Z\sŞşİıĞğÜüÖöÇçÂâîîÛû.]/';
 
     /**
      * The number filter pattern.
@@ -210,6 +210,6 @@ final class NaturalizationRecord
      */
     private static function tr_strtoupper(string $str): string
     {
-        return strtoupper(str_replace(['ç', 'i', 'ı', 'ğ', 'ö', 'ş', 'ü'], ['Ç', 'İ', 'I', 'Ğ', 'Ö', 'Ş', 'Ü'], $str));
+        return strtoupper(str_replace(['ç', 'i', 'ı', 'ğ', 'ö', 'ş', 'ü', 'â', 'î', 'û'], ['Ç', 'İ', 'I', 'Ğ', 'Ö', 'Ş', 'Ü', 'Â', 'Î', 'Û'], $str));
     }
 }
